@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Temperature Checker</string>
+    <string name="scan">Button</string>
+</resources>
