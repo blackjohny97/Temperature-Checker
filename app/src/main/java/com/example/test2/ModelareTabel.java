@@ -1,5 +1,6 @@
 package com.example.test2;
 
+// clasa in care se creaza obiectul din baza de date
 public class ModelareTabel {
 
     private int id;
@@ -13,7 +14,7 @@ public class ModelareTabel {
         this.data = data;
         this.temperature = temperature;
     }
-
+// formarea obiectului sub forma String pentru a putea fi afisat in baza de date
     @Override
     public String toString() {
         return "ModelareTabel{" +
