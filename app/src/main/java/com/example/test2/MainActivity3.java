@@ -49,18 +49,19 @@ public class MainActivity3 extends AppCompatActivity {
                 int rows = data.getCount();
                 data.moveToFirst();
                 for(int i = 0;  i <rows; i++){
-                    data.moveToNext();
+
                     String x = data.getString(2);
                     y = data.getString(3);
                     z = Float.parseFloat(y);
                     Date date1 = null;
                     try {
-                        date1 = new SimpleDateFormat("dd/MM/yyyy").parse(x);
+                        date1 = new SimpleDateFormat("dd.MM.yyyy").parse(x);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
 //adaugarea la grafic a datelor gasite
                     series.appendData(new DataPoint(date1, z), true, 25);
+                    data.moveToNext();
                 }
                 graph.addSeries(series);
             }
