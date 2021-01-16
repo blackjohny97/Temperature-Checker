@@ -34,7 +34,6 @@
         android:id="@+id/temperatura"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Temperature"
         android:textColor="?attr/colorPrimarySurface"
         android:textSize="45sp"
         app:layout_constraintBottom_toBottomOf="parent"

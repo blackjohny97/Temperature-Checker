@@ -57,15 +57,11 @@ public class MainActivity extends AppCompatActivity {
 
         scan = findViewById(R.id.scan);
         Databtn = findViewById(R.id.DataBtn);
-        NameTxt = findViewById(R.id.NameTxt);
+        NameTxt = (EditText) findViewById(R.id.NameTxt);
         butongrafice = findViewById(R.id.butongrafice);
         reset = findViewById(R.id.reset);
-        temperatura = findViewById(R.id.temperatura);
-
-        DateTxt = (TextView)findViewById(R.id.DateTxt);
-
-
-
+        temperatura = (TextView) findViewById(R.id.temperatura);
+        DateTxt = (TextView) findViewById(R.id.DateTxt);
 
         DateTxt.setOnClickListener(new View.OnClickListener() {
 //setarile ferestrei de dialog pentru alegerea datei
@@ -107,19 +103,19 @@ public class MainActivity extends AppCompatActivity {
         });
 
         scan.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onClick(View v) {
 //butonul care adauga in baza de date formand un obiect de tip modelare tabel pentru a fi introdus in baza de date,
 // valoarea float 0.0 va fi inlocuita de o variabila double care va fi primita prin bluetooth de la un Arduino(modificare care mai trebuie facuta)
                 if (mmSocket.isConnected() && btt != null) {
-                    temperatura.append("S-a trimis: "+comanda.toString()+ "\n");
                     btt.write(comanda.getBytes());
                 }
 
                 ModelareTabel modelareTabel;
 
                 try {
-                    modelareTabel = new ModelareTabel(-1, NameTxt.getText().toString(), DateTxt.getText().toString(), (float) 0.0);
+                    modelareTabel = new ModelareTabel(-1, NameTxt.getText().toString(), DateTxt.getText().toString(), Float.valueOf(temperatura.getText().toString()));
                     Toast.makeText(MainActivity.this, modelareTabel.toString(), Toast.LENGTH_SHORT).show();
                 }
                 catch (Exception e){
@@ -146,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
         reset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                temperatura.setText("Temperatura");
+                temperatura.setText("");
             }
         });
 
@@ -162,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 switch(initiateBluetoothProcess()){
                     case 0:
-                        temperatura.append("Connected\n");
+                        temperatura.append("Connected");
                         break;
                     case 1:
                         temperatura.append("Can\\'t establish connection\n");
@@ -218,7 +214,7 @@ public class MainActivity extends AppCompatActivity {
                     //super.handleMessage(msg);
                     if (msg.what == ConnectedThread.RESPONSE_MESSAGE) {
                         String txt = (String) msg.obj;
-                        temperatura.append("S-a primit de la Ardu: "+ txt + "\n");
+                        temperatura.append(txt);
                     }
                 }
             };

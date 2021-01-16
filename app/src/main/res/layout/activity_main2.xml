@@ -8,27 +8,26 @@
 
     <ListView
         android:id="@+id/tabel"
-        android:layout_width="393dp"
-        android:layout_height="648dp"
+        android:layout_width="366dp"
+        android:layout_height="626dp"
         android:layout_marginTop="119dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.481"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.6" />
 
     <Button
         android:id="@+id/btncautare"
         android:layout_width="92dp"
         android:layout_height="62dp"
         android:text="Cauta"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/tabel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.946"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.048" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/numecautat"
