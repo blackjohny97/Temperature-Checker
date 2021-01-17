@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#18BFB1"
     tools:context=".MainActivity2">
 
     <ListView
@@ -11,6 +12,7 @@
         android:layout_width="366dp"
         android:layout_height="626dp"
         android:layout_marginTop="119dp"
+        android:background="#18BFB1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.481"
@@ -23,6 +25,8 @@
         android:layout_width="92dp"
         android:layout_height="62dp"
         android:text="Cauta"
+        android:textColor="#FFFFFF"
+        app:backgroundTint="#095704"
         app:layout_constraintBottom_toTopOf="@+id/tabel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.946"
@@ -36,6 +40,7 @@
         android:ems="10"
         android:hint="Nume"
         android:inputType="textPersonName"
+        android:textColor="#095704"
         app:layout_constraintBottom_toTopOf="@+id/tabel"
         app:layout_constraintEnd_toStartOf="@+id/btncautare"
         app:layout_constraintStart_toStartOf="parent"

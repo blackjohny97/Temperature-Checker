@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     BluetoothDevice mmDevice;             //bluetooth stuff
     ConnectedThread btt = null;           //Our custom thread
     public Handler mHandler;              //this receives messages from thread
-    Button scan, Databtn, butongrafice, reset;
+    Button scan, Databtn, butongrafice, reset, connect;
     EditText NameTxt;
     TextView DateTxt;
     TextView temperatura;
@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         scan = findViewById(R.id.scan);
+        connect = findViewById(R.id.connect);
         Databtn = findViewById(R.id.DataBtn);
         NameTxt = (EditText) findViewById(R.id.NameTxt);
         butongrafice = findViewById(R.id.butongrafice);
@@ -108,10 +109,10 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 //butonul care adauga in baza de date formand un obiect de tip modelare tabel pentru a fi introdus in baza de date,
 // valoarea float 0.0 va fi inlocuita de o variabila double care va fi primita prin bluetooth de la un Arduino(modificare care mai trebuie facuta)
-                if (mmSocket.isConnected() && btt != null) {
+                /*if (mmSocket.isConnected() && btt != null) {
                     btt.write(comanda.getBytes());
                 }
-
+*/
                 ModelareTabel modelareTabel;
 
                 try {
@@ -143,6 +144,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 temperatura.setText("");
+            }
+        });
+
+        connect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mmSocket.isConnected() && btt != null) {
+                    btt.write(comanda.getBytes());
+                }
             }
         });
 
@@ -214,7 +224,7 @@ public class MainActivity extends AppCompatActivity {
                     //super.handleMessage(msg);
                     if (msg.what == ConnectedThread.RESPONSE_MESSAGE) {
                         String txt = (String) msg.obj;
-                        temperatura.append(txt);
+                        temperatura.append(txt + "\n");
                     }
                 }
             };
