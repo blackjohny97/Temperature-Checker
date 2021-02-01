@@ -27,21 +27,20 @@ public class MainActivity2 extends AppCompatActivity {
         tabel = findViewById(R.id.tabel);
         btncautare = findViewById(R.id.btncautare);
         numecautat = findViewById(R.id.numecautat);
-//afisarea listei cu obiectele din baza de date la trecerea in screen-ul curent
+
         databaseClass = new DatabaseClass(MainActivity2.this);
         ArataPersoaneInLista(databaseClass);
-//obiectul de tip tabel configurat pentru apelarea stergerii la selectarea unui obiect din baza de date
-// si afisarea a ce a ramas din lista
+
         tabel.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 ModelareTabel perselectata = (ModelareTabel) parent.getItemAtPosition(position);
                 databaseClass.sterge(perselectata);
                 ArataPersoaneInLista(databaseClass);
-                Toast.makeText(MainActivity2.this,"Deleted " + perselectata.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity2.this,"S-a sters " + perselectata.toString(), Toast.LENGTH_SHORT).show();
             }
         });
-//butonul de cautare care va stoca numele introdus si va afisa lista corespunzatoare cautarii
+
         btncautare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,17 +51,17 @@ public class MainActivity2 extends AppCompatActivity {
             }
         });
     }
-    //aceasta functie are rolul de adaptor pentru afisarea listei bazei de date
+
     public void ArataPersoaneInLista(DatabaseClass databaseClass2) {
         arrayAdapter = new ArrayAdapter<ModelareTabel>(MainActivity2.this, android.R.layout.simple_list_item_1, databaseClass2.getEveryone());
         tabel.setAdapter(arrayAdapter);
     }
-    //aceasta functie are rolul de adaptor pentru afisarea listei bazei de date in urma cautarii
+
     public void ArataPersoanacautata(DatabaseClass databaseClass2, String cautatul) {
         arrayAdapter = new ArrayAdapter<ModelareTabel>(MainActivity2.this, android.R.layout.simple_list_item_1, databaseClass2.search(cautatul));
         tabel.setAdapter(arrayAdapter);
     }
-    //functie utilizata pentru a ne putea intoarce la menuil principal din primul screen
+
     public void onBackPressed(){
         Intent i = new Intent(MainActivity2.this, MainActivity.class);
         i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

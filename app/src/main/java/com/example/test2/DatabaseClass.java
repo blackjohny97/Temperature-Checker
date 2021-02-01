@@ -10,8 +10,7 @@ import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
-// Clasa in care se afla toate metodele prin care se modifica baza de date,
-// SQLiteOpenHelper este o clasa care ajuta la comunicarea cu baza de date SQLite
+
 public class DatabaseClass extends SQLiteOpenHelper {
 
     public static final String TABEL_PERSOANE = "TABEL_PERSOANE";
@@ -27,7 +26,7 @@ public class DatabaseClass extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        //crearea tabelului
+
         String createTable = "CREATE TABLE " + TABEL_PERSOANE + " (" + COLOANA_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLOANA_NUME + " TEXT, " + COLOANA_DATA + " TEXT, " + COLOANA_TEMPERATURA + " FLOAT)";
 
         db.execSQL(createTable);
@@ -37,15 +36,15 @@ public class DatabaseClass extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
     }
-// functia de adaugare a datelor in tabel
+
     public boolean Adauga (ModelareTabel modelareTabel){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
-// content values populeaza tabelul in functie de coloane
+
         cv.put(COLOANA_NUME,modelareTabel.getNume());
         cv.put(COLOANA_DATA,modelareTabel.getData());
         cv.put(COLOANA_TEMPERATURA,modelareTabel.getTemperature());
-// se verifica insertia
+
         long insert = db.insert(TABEL_PERSOANE, null, cv);
         if(insert == -1) {
             return false;
@@ -54,14 +53,12 @@ public class DatabaseClass extends SQLiteOpenHelper {
             return true;
         }
     }
-// fuctia de stergere prin apasarea pe obiectul din lista afisata a bazei de date
+
     public boolean sterge(ModelareTabel modelareTabel){
         SQLiteDatabase db = this.getWritableDatabase();
         String deletestring= "DELETE FROM " + TABEL_PERSOANE + " WHERE " + COLOANA_ID + " = " + modelareTabel.getId();
         Cursor query = db.rawQuery(deletestring, null);
-//cursorul este folosit asemenea i-ului din for
-//dupa crearea query-ului care cauta in baza de date obiectul selectat se va merge la prima optiune compatibila
-// verificand baza de date de la primul obiect
+
         if(query.moveToFirst()){
             return true;
         }
@@ -69,7 +66,7 @@ public class DatabaseClass extends SQLiteOpenHelper {
             return false;
         }
     }
-//lista care se va afisa pe screen-ul 2, in acesta vor fi afisate toate obiectele introduse in baza de date
+
     public List<ModelareTabel>getEveryone(){
 
         List<ModelareTabel> returnList = new ArrayList<>();
@@ -77,7 +74,7 @@ public class DatabaseClass extends SQLiteOpenHelper {
         String querrystring = "SELECT * FROM "+ TABEL_PERSOANE;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(querrystring, null);
-//apelarea bazei de date si formeaza un obiect de tip modelare tabel, dupa aceea este pus in lista
+
         if(cursor.moveToFirst()){
             do{
 
@@ -94,7 +91,7 @@ public class DatabaseClass extends SQLiteOpenHelper {
         db.close();
         return returnList;
     }
-//lista de search este folosita pentru a cauta in baza de date dupa nume si afisarea listei restranse
+
     public List<ModelareTabel>search(String nume){
 
         List<ModelareTabel> cautatlist = new ArrayList<>();
@@ -119,26 +116,11 @@ public class DatabaseClass extends SQLiteOpenHelper {
         db.close();
         return cautatlist;
     }
-//metoda folosita pentru a cauta in baza de date dupa nume pentru a lua datele necesare graficului
+
     public Cursor getData(String persnume){
         SQLiteDatabase db = this.getWritableDatabase();
         String query =  "SELECT * FROM " + TABEL_PERSOANE + " WHERE " + COLOANA_NUME + " LIKE '%" + persnume + "%'";
         Cursor data = db.rawQuery(query, null);
         return data;
     }
-
-   /* public Cursor readEntry(){
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        String[] allColumns = new String[]{
-                DatabaseClass.COLOANA_DATA,
-                DatabaseClass.COLOANA_TEMPERATURA,
-        };
-
-        Cursor c = db.query(DatabaseClass.TABEL_PERSOANE, allColumns, null, null, null, null, null);
-        if (c != null) {
-            c.moveToFirst();
-        }
-        return c;
-    }*/
 }

@@ -11,7 +11,7 @@
         android:id="@+id/scan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Scan"
+        android:text="Adauga"
         android:textColor="#FFFFFF"
         app:backgroundTint="#095704"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -25,7 +25,7 @@
         android:id="@+id/DataBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Database"
+        android:text="Baza de date"
         android:textColor="#FFFFFF"
         app:backgroundTint="#095704"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -51,7 +51,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Enter Name"
+        android:hint="Nume"
         android:inputType="textPersonName"
         android:textColor="#095704"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -60,58 +60,46 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.344" />
 
+    <TextView
+        android:id="@+id/DateTxt"
+        android:layout_width="224dp"
+        android:layout_height="63dp"
+        android:hint="Selecteaza Data"
+        android:textColor="#095704"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/scan"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.538"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/NameTxt" />
+
     <Button
-        android:id="@+id/butongrafice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Grafice"
+        android:id="@+id/reset"
+        android:layout_width="133dp"
+        android:layout_height="54dp"
+        android:text="Reseteaza"
+        android:textColor="#FFFFFF"
+        app:backgroundTint="#095704"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/connect"
+        app:layout_constraintVertical_bias="0.402" />
+
+    <Button
+        android:id="@+id/connect"
+        android:layout_width="128dp"
+        android:layout_height="49dp"
+        android:layout_marginBottom="16dp"
+        android:text="Scaneaza"
         android:textColor="#FFFFFF"
         app:backgroundTint="#095704"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/DataBtn"
-        app:layout_constraintVertical_bias="0.206" />
-
-    <TextView
-        android:id="@+id/DateTxt"
-        android:layout_width="163dp"
-        android:layout_height="61dp"
-        android:hint="Select Date"
-        android:textColor="#095704"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/scan"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/NameTxt" />
-
-    <Button
-        android:id="@+id/reset"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Reset"
-        android:textColor="#FFFFFF"
-        app:backgroundTint="#095704"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.786"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/butongrafice"
-        app:layout_constraintVertical_bias="0.466" />
-
-    <Button
-        android:id="@+id/connect"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Connect"
-        android:textColor="#FFFFFF"
-        app:backgroundTint="#095704"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/reset"
-        app:layout_constraintHorizontal_bias="0.352"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/butongrafice"
-        app:layout_constraintVertical_bias="0.466" />
+        app:layout_constraintVertical_bias="0.21" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
